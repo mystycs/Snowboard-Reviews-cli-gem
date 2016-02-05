@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
-require './lib/snowboard_reviews'
+require "bundler/setup"
+require "snowboard_reviews"
 
 SnowboardReviews::CLI.new.call

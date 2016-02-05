@@ -2,6 +2,7 @@ class SnowboardReviews::CLI
 
   def call
     puts "Welcome to Snowboard Reviews"
+    puts "Please make the following choices below or type exit to exit the program."
     list_boards
   end
 
@@ -12,6 +13,8 @@ class SnowboardReviews::CLI
       male_boards
     elsif input == "female"
       female_boards
+    elsif input == "exit"
+      goodbye
     else
       list_boards
     end
@@ -19,28 +22,39 @@ class SnowboardReviews::CLI
 
   def male_boards
     puts "Please select a Snowboard to review by entering the number associated with it."
-    puts "1. - Academy Rythem"
-    puts "2. - Academy Team"
+    @boards = SnowboardReviews::Boards.male
+    @boards.each.with_index(1) do |board, i|
+      puts "#{i}. #{board.name} - #{board.price}"
+    end
+
     input = gets.strip.downcase
-    if input == "1"
-      puts "More info on 1"
-    elsif input == "2"
-      puts "More info on 2"
+    if input.to_i > 0
+      puts @boards[input.to_i-1]
+    elsif input == "exit"
+      goodbye
+    else
+      male_boards
     end
   end
 
   def female_boards
     puts "Please select a Snowboard to review by entering the number associated with it."
-    puts "1. - Hogwartz Rythem"
-    puts "2. - Hogwartz Team"
+    @boards = SnowboardReviews::Boards.female
+    @boards.each.with_index(1) do |board, i|
+      puts "#{i}. #{board.name} - #{board.price}"
+    end
+
     input = gets.strip.downcase
-    if input == "1"
-      puts "More info on 1"
-    elsif input == "2"
-      puts "More info on 2"
+    if input.to_i > 0
+      puts @boards[input.to_i-1]
+    elsif input == "exit"
+      goodbye
+    else
+      female_boards
     end
   end
-  
+
+
   def goodbye
     puts "Please check back later for new reviews on Snowboards!"
   end
