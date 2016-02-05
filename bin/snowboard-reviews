@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/snowboard_reviews'
+
+SnowboardReviews::CLI.new.call

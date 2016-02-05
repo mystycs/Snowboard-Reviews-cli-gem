@@ -1,5 +1,3 @@
-require "snowboard_reviews/version"
+require_relative "./snowboard_reviews/version"
+require_relative './snowboard_reviews/cli'
 
-module SnowboardReviews
-  # Your code goes here...
-end
