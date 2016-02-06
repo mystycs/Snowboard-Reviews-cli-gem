@@ -24,22 +24,21 @@ class SnowboardReviews::Scraper
 
   end
 
-  def self.scrape_reviews(snowboard_url)
+#   def self.scrape_reviews(snowboard_url)
 
-        html = Nokogiri::HTML(open(snowboard_url))
+#         html = Nokogiri::HTML(open(snowboard_url))
 
-        boards = {}
+#     boards = {}
 
-        #html.css(".student-card").each do |board_model|
-          #cdname = board_model.css("h4").text
-          #boards[name] = {
-          boards = {
-            :onthesnowfeel => html.css(".reviewfold p").text
-          #  :price => board_model.css("p").text
-           }
-       # end
-        boards
+#         #html.css(".student-card").each do |board_model|
+#           #cdname = board_model.css("h4").text
+#           #boards[name] = {
+#       boards[:onthesnowfeel] = html.css(".reviewfold p").text
+#           #  :price => board_model.css("p").text
+#           # })
+#        # end
+#     boards
 
-  end
+#  end
 
 end

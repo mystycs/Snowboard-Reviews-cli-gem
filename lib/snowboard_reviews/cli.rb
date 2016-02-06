@@ -79,12 +79,14 @@ class SnowboardReviews::CLI
     end
 
     snowboard_url = "http://thegoodride.com/snowboard-reviews/#{brand}-#{model}-#{urlhelper.gsub(' ','-')}/"
-    puts snowboard_url.downcase!.gsub(' ','-') #some words in the json have spaces after brand
+    snowboard_url = snowboard_url.downcase!.gsub(' ','-') #some words in the json have spaces after brand
+  
+  puts snowboard_url
 
-#    SnowboardReviews::Boards.all.each do |board|
-#       attr = SnowboardReviews::Scraper.scrape_reviews(snowboard_url)
-#      board.add_board_attributes(attr)
-#   end
+     #SnowboardReviews::Boards.all.each do |board|
+#        attr = SnowboardReviews::Scraper.scrape_reviews(snowboard_url)
+#       SnowboardReviews::Boards.add_board_attributes(attr)
+   # end
 
 
 
