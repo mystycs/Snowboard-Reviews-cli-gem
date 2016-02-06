@@ -1,4 +1,3 @@
-require 'nokogiri'
 require 'pry'
 
 require_relative './snowboard_reviews/version'

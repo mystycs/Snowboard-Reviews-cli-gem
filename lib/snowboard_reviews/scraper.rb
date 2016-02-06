@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'nokogiri'
 require 'json'
 
 require_relative './boards.rb'
@@ -23,7 +24,7 @@ class SnowboardReviews::Scraper
 
   end
 
-  def self.scrape_reviews#(index_url)
+  def self.scrape_reviews#(snowboard_url)
     #<a href="http://<%= $(location).attr('host') %>/snowboard-reviews/<%= ($.trim(this[0])+" "+$.trim(this[1])+" "+$.trim(this[2])).replace(/[.]/g," ").replace(/\s/g,'-').toLowerCase() %>">
 
 #         index_url = 'http://thegoodride.com/snowboard-reviews/'

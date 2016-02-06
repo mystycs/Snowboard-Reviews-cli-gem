@@ -34,7 +34,7 @@ class SnowboardReviews::CLI
 
     input = gets.strip.downcase
     if input.to_i > 0
-      print_review(index_url) #notifies url for male or female
+      print_review(input) #notifies url for male or female
     elsif input == "exit"
       goodbye
     else
@@ -68,10 +68,25 @@ class SnowboardReviews::CLI
 
   def print_review(input)
 
+    brand, model, urlhelper = nil
+
+      SnowboardReviews::Boards.all.each.with_index(1) do |board, i|
+      if input.to_i == i
+        brand = board.brand
+        model = board.model
+        urlhelper = board.urlhelper
+      end
+    end
+
+    snowboard_url = "http://thegoodride.com/snowboard-reviews/#{brand}-#{model}-#{urlhelper.gsub(' ','-')}/"
+    #puts snowboard_url.downcase!
+  
     SnowboardReviews::Boards.all.each do |board|
-      attr = SnowboardReviews::Scraper.scrape_reviews(index_url)
+      attr = SnowboardReviews::Scraper.scrape_reviews(snowboard_url.downcase!)
       board.add_board_attributes(attr)
     end
+
+
 
   end
 
