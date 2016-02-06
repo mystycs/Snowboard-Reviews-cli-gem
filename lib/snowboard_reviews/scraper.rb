@@ -24,22 +24,21 @@ class SnowboardReviews::Scraper
 
   end
 
-  def self.scrape_reviews#(snowboard_url)
-    #<a href="http://<%= $(location).attr('host') %>/snowboard-reviews/<%= ($.trim(this[0])+" "+$.trim(this[1])+" "+$.trim(this[2])).replace(/[.]/g," ").replace(/\s/g,'-').toLowerCase() %>">
+  def self.scrape_reviews(snowboard_url)
 
-#         index_url = 'http://thegoodride.com/snowboard-reviews/'
-#         html = Nokogiri::HTML(open(index_url))
-#         boards = {}
-#         html.css(".student-card").each do |board_model|
-#           cdname = board_model.css("h4").text
-#           boards[name] = {
-#           boards = {
-#           :name => html.css("h4").text,
-#           #binding.pry
-#           :price => board_model.css("p").text
-#            }
-#         end
-#         boards
+        html = Nokogiri::HTML(open(snowboard_url))
+
+        boards = {}
+
+        #html.css(".student-card").each do |board_model|
+          #cdname = board_model.css("h4").text
+          #boards[name] = {
+          boards = {
+            :onthesnowfeel => html.css(".reviewfold p").text
+          #  :price => board_model.css("p").text
+           }
+       # end
+        boards
 
   end
 

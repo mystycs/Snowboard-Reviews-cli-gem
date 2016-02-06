@@ -13,7 +13,7 @@ class SnowboardReviews::Boards
     snowboard_array.collect {|snowboard_hash| SnowboardReviews::Boards.new(snowboard_hash)}
   end
 
-  def add_board_attributes(attributes_hash)
+  def self.add_board_attributes(attributes_hash)
     attributes_hash.collect{|key,value| self.send(("#{key}="), value)}
   end
 
