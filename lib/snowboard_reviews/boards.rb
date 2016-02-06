@@ -1,6 +1,6 @@
 class SnowboardReviews::Boards
 
-  attr_accessor :brand, :model, :urlhelper, :price, :id, :onthesnowfeel, :powder, :turninitiationandcarving, :speed, :flex, :jumps
+  attr_accessor :brand, :model, :urlhelper, :price, :id
 
   @@all = []
 
@@ -12,10 +12,6 @@ class SnowboardReviews::Boards
   def self.create(snowboard_array)
     snowboard_array.collect {|snowboard_hash| SnowboardReviews::Boards.new(snowboard_hash)}
   end
-
-#   def self.add_board_attributes(attributes_hash)
-#     attributes_hash.collect {|key,value| self.send(("#{key}="), value)}
-#   end
 
   def self.all
     @@all

@@ -1,13 +1,15 @@
+require 'colorize'
+
 class SnowboardReviews::CLI
 
   def call
     puts "Welcome to Snowboard Reviews"
     puts "Please make the following choices below or type exit to exit the program."
+    puts "Please input Male or Female for board selection\n"
     list_boards
   end
 
   def list_boards
-    puts "Please input Male or Female for board selection"
     input = gets.strip.downcase
     if input == "male"
       male_boards
@@ -16,13 +18,12 @@ class SnowboardReviews::CLI
     elsif input == "exit"
       goodbye
     else
+      puts "Unrecognized Input. Please enter male or female"
       list_boards
     end
   end
 
   def male_boards
-    puts "Please select a Snowboard to review by entering the number associated with it."
-
     index_url = 'http://thegoodride.com/ajax.php?sort=0&mens=1'
 
     boards_array = SnowboardReviews::Scraper.scrape_boards(index_url)
@@ -32,17 +33,15 @@ class SnowboardReviews::CLI
       puts "#{i}. #{board.brand} - #{board.model} - $#{board.price}"
     end
 
+    puts "Please select a Snowboard to review by entering the number associated with it."
+
     input = gets.strip.downcase
     if input.to_i > 0
       print_review(input) #notifies url for male or female
     elsif input == "exit"
       goodbye
-    else
-      male_boards
     end
   end
-
-
 
   def female_boards
     puts "Please select a Snowboard to review by entering the number associated with it."
@@ -56,39 +55,49 @@ class SnowboardReviews::CLI
       puts "#{i}. #{board.brand} - #{board.model} - $#{board.price}"
     end
 
+    puts "Please select a Snowboard to review by entering the number associated with it."
+
     input = gets.strip.downcase
     if input.to_i > 0
       print_review(input) #notifies url for male or female
     elsif input == "exit"
       goodbye
-    else
-      male_boards
     end
   end
 
   def print_review(input)
 
-    brand, model, urlhelper = nil
+    brand, model, urlhelper, price = nil
 
-      SnowboardReviews::Boards.all.each.with_index(1) do |board, i|
+    SnowboardReviews::Boards.all.each.with_index(1) do |board, i|
       if input.to_i == i
         brand = board.brand
         model = board.model
+        price = board.price
         urlhelper = board.urlhelper
       end
     end
 
-    snowboard_url = "http://thegoodride.com/snowboard-reviews/#{brand}-#{model}-#{urlhelper.gsub(' ','-')}/"
-    snowboard_url = snowboard_url.downcase!.gsub(' ','-') #some words in the json have spaces after brand
-  
-  puts snowboard_url
+    snowboard_url = "http://thegoodride.com/snowboard-reviews/#{brand}-#{model}-#{urlhelper.gsub(' ','-')}/".downcase!.gsub(' ','-')
 
-     #SnowboardReviews::Boards.all.each do |board|
-#        attr = SnowboardReviews::Scraper.scrape_reviews(snowboard_url)
-#       SnowboardReviews::Boards.add_board_attributes(attr)
-   # end
+    attr = SnowboardReviews::Scraper.scrape_reviews(snowboard_url)
 
-
+    puts "\nSnowboard: ".colorize(:red) + "#{brand} - #{model} - " + "($#{price})".colorize(:green)
+    puts "\nReview URL: ".colorize(:red) + snowboard_url
+    puts "\nDescription:".colorize(:red)
+    puts attr[:description]
+    puts "\nOn Snow Feel:".colorize(:red)
+    puts attr[:onthesnowfeel]
+    puts "\nPowder:".colorize(:red)
+    puts attr[:powder]
+    puts "\nTurn Initiation and Carving:".colorize(:red)
+    puts attr[:turninitiationandcarving]
+    puts "\nSpeed:".colorize(:red)
+    puts attr[:speed]
+    puts "\nFlex:".colorize(:red)
+    puts attr[:flex]
+    puts "\nJumps:".colorize(:red)
+    puts attr[:jumps]
 
   end
 
