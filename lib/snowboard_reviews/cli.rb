@@ -1,24 +1,23 @@
 require 'colorize'
 
 class SnowboardReviews::CLI
-
   def call
-    puts "Welcome to Snowboard Reviews"
-    puts "Please make the following choices below or type exit to exit the program."
+    puts 'Welcome to Snowboard Reviews'
+    puts 'Please make the following choices below or type exit to exit the program.'
     puts "Please input Male or Female for board selection\n"
     list_boards
   end
 
   def list_boards
     input = gets.strip.downcase
-    if input == "male"
+    if input == 'male'
       male_boards
-    elsif input == "female"
+    elsif input == 'female'
       female_boards
-    elsif input == "exit"
+    elsif input == 'exit'
       goodbye
     else
-      puts "Unrecognized Input. Please enter male or female"
+      puts 'Unrecognized Input. Please enter male or female'
       list_boards
     end
   end
@@ -33,18 +32,18 @@ class SnowboardReviews::CLI
       puts "#{i}. #{board.brand} - #{board.model} - $#{board.price}"
     end
 
-    puts "Please select a Snowboard to review by entering the number associated with it."
+    puts 'Please select a Snowboard to review by entering the number associated with it.'
 
     input = gets.strip.downcase
     if input.to_i > 0
-      print_review(input) #notifies url for male or female
-    elsif input == "exit"
+      print_review(input) # notifies url for male or female
+    elsif input == 'exit'
       goodbye
     end
   end
 
   def female_boards
-    puts "Please select a Snowboard to review by entering the number associated with it."
+    puts 'Please select a Snowboard to review by entering the number associated with it.'
 
     index_url = 'http://thegoodride.com/ajax.php?sort=0&womens=1'
 
@@ -55,18 +54,17 @@ class SnowboardReviews::CLI
       puts "#{i}. #{board.brand} - #{board.model} - $#{board.price}"
     end
 
-    puts "Please select a Snowboard to review by entering the number associated with it."
+    puts 'Please select a Snowboard to review by entering the number associated with it.'
 
     input = gets.strip.downcase
     if input.to_i > 0
-      print_review(input) #notifies url for male or female
-    elsif input == "exit"
+      print_review(input) # notifies url for male or female
+    elsif input == 'exit'
       goodbye
     end
   end
 
   def print_review(input)
-
     brand, model, urlhelper, price = nil
 
     SnowboardReviews::Boards.all.each.with_index(1) do |board, i|
@@ -78,7 +76,7 @@ class SnowboardReviews::CLI
       end
     end
 
-    snowboard_url = "http://thegoodride.com/snowboard-reviews/#{brand}-#{model}-#{urlhelper.gsub(' ','-')}/".downcase!.gsub(' ','-')
+    snowboard_url = "http://thegoodride.com/snowboard-reviews/#{brand}-#{model}-#{urlhelper.tr(' ', '-')}/".downcase!.tr(' ', '-')
 
     attr = SnowboardReviews::Scraper.scrape_reviews(snowboard_url)
 
@@ -98,12 +96,9 @@ class SnowboardReviews::CLI
     puts attr[:flex]
     puts "\nJumps:".colorize(:red)
     puts attr[:jumps]
-
   end
-
 
   def goodbye
-    puts "Please check back later for new reviews on Snowboards!"
+    puts 'Please check back later for new reviews on Snowboards!'
   end
-
 end
