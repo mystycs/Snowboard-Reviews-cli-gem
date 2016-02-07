@@ -84,18 +84,30 @@ class SnowboardReviews::CLI
     puts "\nReview URL: ".colorize(:red) + snowboard_url
     puts "\nDescription:".colorize(:red)
     puts attr[:description]
-    puts "\nOn Snow Feel:".colorize(:red)
-    puts attr[:onthesnowfeel]
-    puts "\nPowder:".colorize(:red)
-    puts attr[:powder]
-    puts "\nTurn Initiation and Carving:".colorize(:red)
-    puts attr[:turninitiationandcarving]
-    puts "\nSpeed:".colorize(:red)
-    puts attr[:speed]
-    puts "\nFlex:".colorize(:red)
-    puts attr[:flex]
-    puts "\nJumps:".colorize(:red)
-    puts attr[:jumps]
+    if attr[:onthesnowfeel] != []
+      puts "\nOn Snow Feel:".colorize(:red)
+      puts attr[:onthesnowfeel]
+    end
+    if attr[:powder] != []
+      puts "\nPowder:".colorize(:red)
+      puts attr[:powder]
+    end
+    if attr[:turninitiationandcarving] != []
+      puts "\nTurn Initiation and Carving:".colorize(:red)
+      puts attr[:turninitiationandcarving]
+    end
+    if attr[:speed] != []
+      puts "\nSpeed:".colorize(:red)
+      puts attr[:speed]
+    end
+    if attr[:flex] != []
+      puts "\nFlex:".colorize(:red)
+      puts attr[:flex]
+    end
+    if attr[:jumps] != []
+      puts "\nJumps:".colorize(:red)
+      puts attr[:jumps]
+    end
   end
 
   def goodbye
