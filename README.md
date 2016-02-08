@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Simple rub the gem and select male or female to display the list of available board reviews. Then select the # of the board and it will display the review.
 
 ## Development
 
@@ -34,7 +34,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/snowboard_reviews.
+Bug reports and pull requests are welcome on GitHub at https://github.com/mystycs/Snowboard-Reviews-cli-gem
 
 =======
 
