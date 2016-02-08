@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ## Usage
 
-Simple rub the gem and select male or female to display the list of available board reviews. Then select the # of the board and it will display the review.
+Simple run the gem and select male or female to display the list of available board reviews. Then select the # of the board and it will display the review.
 
 ## Development
 
