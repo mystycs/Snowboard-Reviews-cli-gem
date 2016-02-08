@@ -84,27 +84,27 @@ class SnowboardReviews::CLI
     puts "\nReview URL: ".colorize(:red) + snowboard_url
     puts "\nDescription:".colorize(:red)
     puts attr[:description]
-    if attr[:onthesnowfeel] != []
+    if !attr[:onthesnowfeel].nil?
       puts "\nOn Snow Feel:".colorize(:red)
       puts attr[:onthesnowfeel]
     end
-    if attr[:powder] != []
+    if !attr[:powder].nil?
       puts "\nPowder:".colorize(:red)
       puts attr[:powder]
     end
-    if attr[:turninitiationandcarving] != []
+    if !attr[:turninitiationandcarving].nil?
       puts "\nTurn Initiation and Carving:".colorize(:red)
       puts attr[:turninitiationandcarving]
     end
-    if attr[:speed] != []
+    if !attr[:speed].nil?
       puts "\nSpeed:".colorize(:red)
       puts attr[:speed]
     end
-    if attr[:flex] != []
+    if !attr[:flex].nil?
       puts "\nFlex:".colorize(:red)
       puts attr[:flex]
     end
-    if attr[:jumps] != []
+    if !attr[:jumps].nil?
       puts "\nJumps:".colorize(:red)
       puts attr[:jumps]
     end

@@ -1,5 +1,6 @@
-<<<<<<< HEAD
 # SnowboardReviews
+
+This gem will scrape thegoodride.com and get a list of all the snowboards for male and female via JSON, and then allow the user to select and read a review of a snowboard of the users choice.
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/snowboard_reviews`. To experiment with that code, run `bin/console` for an interactive prompt.
 
@@ -36,5 +37,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/snowboard_reviews.
 
 =======
-# Snowboard-Reviews-cli-gem
->>>>>>> 6432333ed197eacb11868ad89c26f630b30ee742
+
