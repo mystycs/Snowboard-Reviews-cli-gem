@@ -1,6 +1,7 @@
 require 'colorize'
-
+require 'pry'
 class SnowboardReviews::CLI
+
   def call
     puts 'Welcome to Snowboard Reviews'
     puts 'Please make the following choices below or type exit to exit the program.'
@@ -65,22 +66,14 @@ class SnowboardReviews::CLI
   end
 
   def print_review(input)
-    brand, model, urlhelper, price = nil
 
-    SnowboardReviews::Boards.all.each.with_index(1) do |board, i|
-      if input.to_i == i
-        brand = board.brand
-        model = board.model
-        price = board.price
-        urlhelper = board.urlhelper
-      end
-    end
+    board = SnowboardReviews::Boards.all[input.to_i-1]
 
-    snowboard_url = "http://thegoodride.com/snowboard-reviews/#{brand}-#{model}-#{urlhelper.tr(' ', '-')}/".downcase!.tr(' ', '-')
+    snowboard_url = "http://thegoodride.com/snowboard-reviews/#{board.brand}-#{board.model}-#{board.urlhelper.tr(' ', '-')}/".downcase!.tr(' ', '-')
 
     attr = SnowboardReviews::Scraper.scrape_reviews(snowboard_url)
 
-    puts "\nSnowboard: ".colorize(:red) + "#{brand} - #{model} - " + "($#{price})".colorize(:green)
+    puts "\nSnowboard: ".colorize(:red) + "#{board.brand} - #{board.model} - " + "($#{board.price})".colorize(:green)
     puts "\nReview URL: ".colorize(:red) + snowboard_url
     puts "\nDescription:".colorize(:red)
     puts attr[:description]
@@ -92,6 +85,7 @@ class SnowboardReviews::CLI
       puts "\nPowder:".colorize(:red)
       puts attr[:powder]
     end
+    #binding.pry
     if !attr[:turninitiationandcarving].nil?
       puts "\nTurn Initiation and Carving:".colorize(:red)
       puts attr[:turninitiationandcarving]
